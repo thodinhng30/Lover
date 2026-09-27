@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anh yêu em</title>
+
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding-top: 200px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffb3c1 100%);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        button {
+            font-size: 22px;
+            padding: 15px 35px;
+            cursor: pointer;
+            border-radius: 50px;
+            border: none;
+            background-color: #ff4d6d;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: #ff0054;
+        }
+
+        #message {
+            font-size: 42px;
+            font-weight: bold;
+            color: #590d22;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Icon bay */
+        .flying {
+            position: fixed;
+            bottom: -50px;
+            font-size: 40px;
+            animation: fly 4s linear forwards;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn" onclick="showMessage()">
+        Nhấn vào đây đi bé ❤️
+    </button>
+
+    <div id="message">
+        Nguyễn Đình Thọ ❤️ Phạm Thị Minh Thuận
+    </div>
+
+    <script>
+        function showMessage() {
+            // Ẩn nút bấm
+            document.getElementById("btn").style.display = "none";
+
+            // Hiện lời nhắn
+            document.getElementById("message").style.display = "block";
+
+            // Tạo icon bay
+            setInterval(function() {
+                let icons = ["❤️", "🐷", "💖", "🌸", "🥰"];
+                let icon = icons[Math.floor(Math.random() * icons.length)];
+
+                let element = document.createElement("div");
+                element.className = "flying";
+                element.innerHTML = icon;
+
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.fontSize = (25 + Math.random() * 35) + "px";
+
+                let duration = 3 + Math.random() * 3;
+                element.style.animationDuration = duration + "s";
+
+                document.body.appendChild(element);
+
+                setTimeout(function() {
+                    element.remove();
+                }, duration * 1000);
+
+            }, 250);
+        }
+    </script>
+
+</body>
+</html>
